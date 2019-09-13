@@ -26,9 +26,8 @@ $responseAnswer = $client->post('http://applicant-test.us-east-1.elasticbeanstal
     'headers' => [ 'Referer' => 'http://applicant-test.us-east-1.elasticbeanstalk.com/'],
     'form_params' => [ 'token' => $token]
 ]);
+$htmlAnswer = $responseAnswer->getBody()->getContents();
 
-$domDoc->loadHTML($responseAnswer->getBody()->getContents());
-$answerElement = $domDoc->getElementById('answer');
+echo strip_tags($htmlAnswer) . PHP_EOL;
 
-echo $answerElement->nodeValue . PHP_EOL;
 exit;
