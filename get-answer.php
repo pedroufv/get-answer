@@ -28,6 +28,7 @@ $responseAnswer = $client->post('http://applicant-test.us-east-1.elasticbeanstal
 ]);
 $htmlAnswer = $responseAnswer->getBody()->getContents();
 
-echo strip_tags($htmlAnswer) . PHP_EOL;
 
+// output
+echo strip_tags($htmlAnswer) . PHP_EOL;
 exit;
