@@ -1,14 +1,19 @@
 <?php
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Cookie\SessionCookieJar;
+
 require 'vendor/autoload.php';
 
 // get token
-$client = new GuzzleHttp\Client();
+$jar = new SessionCookieJar('PHPSESSID', true);
+$client = new Client(['cookies' => $jar]);
 $responseToken = $client->get('http://applicant-test.us-east-1.elasticbeanstalk.com/');
 
 $domDoc = new DOMDocument();
 $domDoc->loadHTML($responseToken->getBody()->getContents());
 $tokenElement = $domDoc->getElementById('token');
+
 
 // parse token
 $find = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
@@ -17,3 +22,13 @@ $token = str_replace($find, $replace, $tokenElement->getAttributeNode('value')->
 
 
 // send token and get answer
+$responseAnswer = $client->post('http://applicant-test.us-east-1.elasticbeanstalk.com/', [
+    'headers' => [ 'Referer' => 'http://applicant-test.us-east-1.elasticbeanstalk.com/'],
+    'form_params' => [ 'token' => $token]
+]);
+
+$domDoc->loadHTML($responseAnswer->getBody()->getContents());
+$answerElement = $domDoc->getElementById('answer');
+
+echo $answerElement->nodeValue . PHP_EOL;
+exit;
