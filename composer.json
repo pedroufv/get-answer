@@ -1,0 +1,11 @@
+{
+    "name": "pedroaugusto/crawly",
+    "description": "get answer",
+    "authors": [
+        {
+            "name": "Pedro Augusto",
+            "email": "pams.pedro@gmail.com"
+        }
+    ],
+    "require": {}
+}
