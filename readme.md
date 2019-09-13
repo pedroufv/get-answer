@@ -8,6 +8,6 @@
 - composer 
 
 ## How to run?
-- clone this repo `git clone ...` 
+- clone this repo `git clone git@github.com:pedroufv/get-answer.git` 
 - install dependencies `composer intall`
 - run `php get-answer.php`
